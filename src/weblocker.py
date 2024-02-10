@@ -1,4 +1,5 @@
 import os
+from consts import *
 
 class WebLocker(object):
     def __init__(self) -> None:
@@ -9,7 +10,7 @@ class WebLocker(object):
     
     def __write_to_hosts(self, website_url: str) -> None:
         with open(self.__hosts_path, 'a') as hosts_file:
-            hosts_file.write(website_url)
+            hosts_file.write(NEWLINE + NEW_IP + SPACE + website_url)
     
     def run(self) -> None:
         self.__write_to_hosts('www.instagram.com')
