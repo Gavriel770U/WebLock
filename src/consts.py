@@ -1,3 +1,5 @@
 NEWLINE: str = '\n'
 SPACE: str = ' '
 NEW_IP: str = '0.0.0.0'
+FILE_APPEND: str = 'a'
+NT_OS: str = 'nt'
