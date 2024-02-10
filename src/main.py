@@ -1,5 +1,7 @@
 from weblocker import *
+from pyuac import main_requires_admin
 
+@main_requires_admin
 def main() -> None:
     try:
         weblocker = WebLocker()
