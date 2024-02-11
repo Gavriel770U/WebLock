@@ -1,5 +1,6 @@
 import os
-import tkinter
+import sys
+from PyQt6.QtWidgets import QApplication, QWidget
 from consts import *
 
 class WebLocker(object):
@@ -13,23 +14,10 @@ class WebLocker(object):
     
     
     def __init_graphics(self) -> None:
-        self.__window = tkinter.Tk()
-        self.__window.geometry(GEOMETRY)
-        self.__window.title('WebLocker')
-        self.__window.config(bg="aquamarine3")
-        
-        self.__website_block_label = tkinter.Label(master = self.__window, text = 'Enter Website Domain: ')
-        self.__website_block_label.place(x = 10, y = 100)
-        
-        self.__website_block_entry = tkinter.Entry(master = self.__window, width = 40, bd = 5)
-        
-        self.__website_block_entry.place(x = 150, y = 95)
-        
-        self.__submit_block_button = tkinter.Button(master = self.__window, text = 'Block Website', 
-                command = self.__submit_block_button_command, bd = 5) 
-        
-        self.__submit_block_button.place(x = 450, y = 95)
-        
+        self.__app = QApplication(sys.argv)
+        self.__window = QWidget()
+        self.__window.resize(WIDTH, HEIGHT)
+        self.__window.setWindowTitle('WebLocker') 
         
     def __submit_block_button_command(self) -> None:
         domain = self.__website_block_entry.get()
@@ -44,4 +32,6 @@ class WebLocker(object):
     
     
     def run(self) -> None:
-        self.__window.mainloop()
+        self.__window.show()
+        
+        sys(exit(self.__app.exec()))

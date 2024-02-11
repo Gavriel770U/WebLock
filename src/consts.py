@@ -5,4 +5,3 @@ FILE_APPEND: str = 'a'
 NT_OS: str = 'nt'
 WIDTH: int = 600
 HEIGHT: int = 400
-GEOMETRY: str = str(WIDTH)+'x'+str(HEIGHT)
