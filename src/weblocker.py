@@ -14,7 +14,7 @@ class WebLocker(object):
     
     def __init_graphics(self) -> None:
         self.__window = tkinter.Tk()
-        self.__window.geometry('600x400')
+        self.__window.geometry(GEOMETRY)
         self.__window.title('WebLocker')
         
         self.__website_block_label = tkinter.Label(master = self.__window, text = 'Enter Website Domain: ')
