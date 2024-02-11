@@ -22,12 +22,12 @@ class WebLocker(object):
         
         self.__website_block_entry = tkinter.Entry(master = self.__window, width = 40, bd = 5)
         
-        self.__website_block_entry.place(x = 180, y = 100)
+        self.__website_block_entry.place(x = 150, y = 100)
         
         self.__submit_block_button = tkinter.Button(master = self.__window, text = 'Block Website', 
                 command = self.__submit_block_button_command, bd = 5) 
         
-        self.__submit_block_button.place(x=450, y=100)
+        self.__submit_block_button.place(x = 450, y = 95)
         
         
     def __submit_block_button_command(self) -> None:
