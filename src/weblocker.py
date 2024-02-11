@@ -6,10 +6,13 @@ from PyQt6.QtGui import QFont
 from consts import *
 
 class WebLockerHostsManager(object):
-    def __init__(self, os: str) -> None:
-        pass
-    
-    
+    def __init__(self) -> None:
+        if NT_OS == os.name:
+            self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
+        else:
+            raise OSError(f'WebLocker does not support OS [{os.name}]')
+        
+        
     def __block_domain_windows(self) -> None:
         domain = self.__website_block_entry.get()
         os.system("ipconfig /flushdns")
@@ -25,8 +28,10 @@ class WebLockerHostsManager(object):
 class WebLockerWindow(QWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.__hosts_manager = WebLockerHostsManager()
         
         self.__initUI()
+        
         
     def __initUI(self) -> None:
         QToolTip.setFont(QFont('SansSerif', 10))
@@ -45,11 +50,6 @@ class WebLockerWindow(QWidget):
 
 class WebLocker(object):
     def __init__(self) -> None:
-        if NT_OS == os.name:
-            self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
-        else:
-            raise OSError(f'WebLocker does not support OS [{os.name}]')
-        
         self.__init_graphics()
     
     
