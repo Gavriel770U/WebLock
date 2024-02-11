@@ -40,6 +40,4 @@ class WebLocker(object):
     
     
     def run(self) -> None:
-        self.__write_to_hosts('www.instagram.com')
-        
         self.__window.mainloop()
