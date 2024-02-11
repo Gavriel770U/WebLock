@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt6.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QApplication)
+    QPushButton, QLineEdit, QApplication)
 from PyQt6.QtGui import QFont
 from consts import *
 
@@ -11,18 +11,17 @@ class WebLockerHostsManager(object):
             self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
         else:
             raise OSError(f'WebLocker does not support OS [{os.name}]')
-        
-        
-    def __block_domain_windows(self) -> None:
-        domain = self.__website_block_entry.get()
-        os.system("ipconfig /flushdns")
-        self.__write_to_hosts(domain)
-        os.system("ipconfig /flushdns")
-        
-         
-    def __write_to_hosts(self, website_url: str) -> None:
+                 
+
+    def write_to_hosts(self, website_url: str) -> None:
         with open(self.__hosts_path, FILE_APPEND) as hosts_file:
             hosts_file.write(NEWLINE + NEW_IP + SPACE + website_url)
+
+
+    def block_domain_windows(self, domain: str) -> None:
+        os.system("ipconfig /flushdns")
+        self.write_to_hosts(domain)
+        os.system("ipconfig /flushdns")
     
 
 class WebLockerWindow(QWidget):
@@ -38,15 +37,39 @@ class WebLockerWindow(QWidget):
 
         self.setToolTip('WebLocker Window Instance')
 
-        block_website_button = QPushButton('Block Website', self)
-        block_website_button.setToolTip('Click To Block A Website')
-        block_website_button.clicked.connect(QApplication.instance().quit)
-        block_website_button.resize(block_website_button.sizeHint())
-        block_website_button.move(50, 50)
+        self.block_website_line_edit = QLineEdit(self)
+        self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
+        self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
+        self.block_website_line_edit.move(50, 50)
+
+
+        self.block_website_button = QPushButton('Block Website', self)
+        self.block_website_button.setToolTip('Click To Block A Website')
+        self.block_website_button.clicked.connect(self.block_website)
+        self.block_website_button.resize(self.block_website_button.sizeHint())
+        self.block_website_button.move(250, 50)
+
 
         self.setGeometry(0, 0, WIDTH, HEIGHT)
         self.setWindowTitle('WebLocker')
+        self.center()
         self.show()
+    
+    
+    def block_website(self) -> None:
+        domain = self.block_website_line_edit.text()
+        print(domain)
+        if domain and len(domain):
+            self.__hosts_manager.block_domain_windows(domain)
+            
+            
+    def center(self) -> None:
+        qr = self.frameGeometry()
+        cp = self.screen().availableGeometry().center()
+
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())    
+
 
 class WebLocker(object):
     def __init__(self) -> None:
