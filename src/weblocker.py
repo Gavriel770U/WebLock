@@ -40,6 +40,7 @@ class WebLockerWindow(QWidget):
         self.block_website_line_edit = QLineEdit(self)
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
+        self.block_website_line_edit.setFixedWidth(150)
         self.block_website_line_edit.move(50, 50)
 
 
