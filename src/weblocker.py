@@ -16,13 +16,14 @@ class WebLocker(object):
         self.__window = tkinter.Tk()
         self.__window.geometry(GEOMETRY)
         self.__window.title('WebLocker')
+        self.__window.config(bg="aquamarine3")
         
         self.__website_block_label = tkinter.Label(master = self.__window, text = 'Enter Website Domain: ')
         self.__website_block_label.place(x = 10, y = 100)
         
         self.__website_block_entry = tkinter.Entry(master = self.__window, width = 40, bd = 5)
         
-        self.__website_block_entry.place(x = 150, y = 100)
+        self.__website_block_entry.place(x = 150, y = 95)
         
         self.__submit_block_button = tkinter.Button(master = self.__window, text = 'Block Website', 
                 command = self.__submit_block_button_command, bd = 5) 
