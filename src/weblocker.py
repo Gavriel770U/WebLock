@@ -44,9 +44,9 @@ class WebLockerWindow(QWidget):
         self.setToolTip('WebLocker Window Instance')
     
         self.block_website_label = QLabel(self)
-        self.block_website_label.setText("Enter Domain Of WebSite To Block: ")
+        self.block_website_label.setText("<b>Enter Domain Of Website To Block: </b>")
         self.block_website_label.resize(self.block_website_label.sizeHint())
-        self.block_website_label.move(50, 50)
+        self.block_website_label.move(40, 50)
 
 
         self.block_website_line_edit = QLineEdit(self)
@@ -54,7 +54,7 @@ class WebLockerWindow(QWidget):
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
         self.block_website_line_edit.setFixedWidth(150)
         self.block_website_line_edit.move(250, 50)
-
+        
 
         self.block_website_button = QPushButton('Block Website', self)
         self.block_website_button.setToolTip('Click To Block A Website')
