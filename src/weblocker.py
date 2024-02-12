@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt6.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QLineEdit, QApplication)
+    QPushButton, QLineEdit, QLabel, QApplication)
 from PyQt6.QtGui import QFont
 from consts import *
 
@@ -42,19 +42,25 @@ class WebLockerWindow(QWidget):
         QToolTip.setFont(QFont('SansSerif', 10))
 
         self.setToolTip('WebLocker Window Instance')
+    
+        self.block_website_label = QLabel(self)
+        self.block_website_label.setText("Enter Domain Of WebSite To Block: ")
+        self.block_website_label.resize(self.block_website_label.sizeHint())
+        self.block_website_label.move(50, 50)
+
 
         self.block_website_line_edit = QLineEdit(self)
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
         self.block_website_line_edit.setFixedWidth(150)
-        self.block_website_line_edit.move(50, 50)
+        self.block_website_line_edit.move(250, 50)
 
 
         self.block_website_button = QPushButton('Block Website', self)
         self.block_website_button.setToolTip('Click To Block A Website')
         self.block_website_button.clicked.connect(self.block_website)
         self.block_website_button.resize(self.block_website_button.sizeHint())
-        self.block_website_button.move(250, 50)
+        self.block_website_button.move(450, 50)
 
 
         self.setGeometry(0, 0, WIDTH, HEIGHT)
