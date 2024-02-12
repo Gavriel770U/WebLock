@@ -7,6 +7,7 @@ from consts import *
 
 class WebLockerHostsManager(object):
     def __init__(self) -> None:
+        self.__os = os.name
         if NT_OS == os.name:
             self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
         else:
@@ -17,6 +18,11 @@ class WebLockerHostsManager(object):
         with open(self.__hosts_path, FILE_APPEND) as hosts_file:
             hosts_file.write(NEWLINE + NEW_IP + SPACE + website_url)
 
+    
+    def block_domain(self, domain: str) -> None:
+        if NT_OS == os.name:
+            self.block_domain_windows(domain)
+    
 
     def block_domain_windows(self, domain: str) -> None:
         os.system("ipconfig /flushdns")
@@ -61,7 +67,7 @@ class WebLockerWindow(QWidget):
         domain = self.block_website_line_edit.text()
         print(domain)
         if domain and len(domain):
-            self.__hosts_manager.block_domain_windows(domain)
+            self.__hosts_manager.block_domain(domain)
             
             
     def center(self) -> None:
