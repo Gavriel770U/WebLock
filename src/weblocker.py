@@ -62,7 +62,8 @@ class WebLockerWindow(QWidget):
             }
             
             QPushButton:hover{
-                
+                border: 1px #C6C6C6 solid;
+                background: #0892D0;
             }
         """
         self.setStyleSheet(STYLE)
