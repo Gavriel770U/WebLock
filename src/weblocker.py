@@ -34,39 +34,12 @@ class WebLockerWindow(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.__hosts_manager = WebLockerHostsManager()
-        STYLE = """
-            QWidget{
-                background: #262D37;
-            }
-            
-            QLabel{
-                color: #FFFFFF;
-            }
-            
-            QLineEdit{
-                padding: 1px;
-                color: #FFFFFF;
-                border: 2px solid #FFFFFF;
-                border-radius: 8px;
-            }
-            
-            QPushButton{
-                color: #FFFFFF;
-                background: #0577A8;
-                border: 1px #DADADA solid;
-                padding: 5px 10px;
-                border-radius: 2px;
-                font-weight: bold;
-                font-size: 9pt;
-                outline: none; 
-            }
-            
-            QPushButton:hover{
-                border: 1px #C6C6C6 solid;
-                background: #0892D0;
-            }
-        """
-        self.setStyleSheet(STYLE)
+        
+        styling = ''
+        with open(os.path.abspath("./css/dark_theme.css"), 'r') as theme_file:
+            styling = theme_file.read()
+        
+        self.setStyleSheet(styling)
         
         self.__initUI()
         
