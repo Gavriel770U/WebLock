@@ -34,6 +34,27 @@ class WebLockerWindow(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.__hosts_manager = WebLockerHostsManager()
+        STYLE = """
+            QWidget{
+                background: #262D37;
+            }
+            
+            QLabel{
+                color: #FFFFFF;
+            }
+            
+            QLineEdit{
+                padding: 1px;
+                color: #FFFFFF;
+                border: 2px solid #FFFFFF;
+                border-radius: 8px;
+            }
+            
+            QPushButton{
+                color: #FFFFFF;
+            }
+        """
+        self.setStyleSheet(STYLE)
         
         self.__initUI()
         
@@ -44,12 +65,14 @@ class WebLockerWindow(QWidget):
         self.setToolTip('WebLocker Window Instance')
     
         self.block_website_label = QLabel(self)
+        self.block_website_label.setObjectName('block_website_label')
         self.block_website_label.setText("<b>Enter Domain Of Website To Block: </b>")
         self.block_website_label.resize(self.block_website_label.sizeHint())
         self.block_website_label.move(40, 50)
 
 
         self.block_website_line_edit = QLineEdit(self)
+        self.block_website_line_edit.setObjectName('block_website_line_edit')
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
         self.block_website_line_edit.setFixedWidth(150)
@@ -57,6 +80,7 @@ class WebLockerWindow(QWidget):
         
 
         self.block_website_button = QPushButton('Block Website', self)
+        self.block_website_button.setObjectName('block_website_button')
         self.block_website_button.setToolTip('Click To Block A Website')
         self.block_website_button.clicked.connect(self.block_website)
         self.block_website_button.resize(self.block_website_button.sizeHint())
