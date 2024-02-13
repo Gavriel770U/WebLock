@@ -21,8 +21,10 @@ if platform.system() == 'Linux':
             print(e)
 
 def main() -> None:
-    linux_main()
-    print(platform.system())
-
+    if "Linux" == platform.system():
+        linux_main()
+    elif "Windows" == platform.system():
+        windows_main()    
+        
 if __name__ == '__main__':
     main()
