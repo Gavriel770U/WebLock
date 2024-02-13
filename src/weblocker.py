@@ -1,4 +1,5 @@
 import os
+import platform
 import sys
 from PyQt6.QtWidgets import (QWidget, QToolTip,
     QPushButton, QLineEdit, QLabel, QApplication)
@@ -10,8 +11,11 @@ class WebLockerHostsManager(object):
         self.__os = os.name
         if NT_OS == os.name:
             self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
-        else:
-            raise OSError(f'WebLocker does not support OS [{os.name}]')
+        elif platform.system() == 'Linux':
+            # Linux support
+            self.__hosts_path = r'/etc/hosts'
+        else:    
+            raise OSError(f'WebLocker does not support OS [os module: {os.name} | platform module: {platform.system()}]')
                  
 
     def write_to_hosts(self, website_url: str) -> None:
@@ -22,12 +26,17 @@ class WebLockerHostsManager(object):
     def block_domain(self, domain: str) -> None:
         if NT_OS == os.name:
             self.block_domain_windows(domain)
+        elif "Linux" == platform.system():
+            self.block_domain_linux(domain)   
     
 
     def block_domain_windows(self, domain: str) -> None:
         os.system("ipconfig /flushdns")
         self.write_to_hosts(domain)
         os.system("ipconfig /flushdns")
+
+    def block_domain_linux(self, domain: str) -> None:
+        self.write_to_hosts(domain)    
     
 
 class WebLockerWindow(QWidget):
@@ -61,7 +70,7 @@ class WebLockerWindow(QWidget):
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
         self.block_website_line_edit.setFixedWidth(150)
-        self.block_website_line_edit.move(250, 50)
+        self.block_website_line_edit.move(280, 50)
         
 
         self.block_website_button = QPushButton('Block Website', self)
