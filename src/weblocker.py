@@ -8,11 +8,9 @@ from consts import *
 
 class WebLockerHostsManager(object):
     def __init__(self) -> None:
-        self.__os = os.name
-        if NT_OS == os.name:
+        if WINDOWS == platform.system():
             self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
-        elif platform.system() == 'Linux':
-            # Linux support
+        elif LINUX == platform.system():
             self.__hosts_path = r'/etc/hosts'
         else:    
             raise OSError(f'WebLocker does not support OS [os module: {os.name} | platform module: {platform.system()}]')
@@ -24,9 +22,9 @@ class WebLockerHostsManager(object):
 
     
     def block_domain(self, domain: str) -> None:
-        if NT_OS == os.name:
+        if WINDOWS == platform.system():
             self.block_domain_windows(domain)
-        elif "Linux" == platform.system():
+        elif LINUX == platform.system():
             self.block_domain_linux(domain)   
     
 
