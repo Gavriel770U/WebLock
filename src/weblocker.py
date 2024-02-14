@@ -95,6 +95,29 @@ class WebLockerWindow(QWidget):
         self.block_website_button.move(450, 50)
 
 
+        self.unblock_website_label = QLabel(self)
+        self.unblock_website_label.setObjectName('unblock_website_label')
+        self.unblock_website_label.setText("<b>Enter Domain Of Website To Unblock: </b>")
+        self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
+        self.unblock_website_label.move(40, 100)
+
+
+        self.unblock_website_line_edit = QLineEdit(self)
+        self.unblock_website_line_edit.setObjectName('unblock_website_line_edit')
+        self.unblock_website_line_edit.setToolTip('Enter Website Domain To Unblock')
+        self.unblock_website_line_edit.resize(self.unblock_website_line_edit.sizeHint())
+        self.unblock_website_line_edit.setFixedWidth(150)
+        self.unblock_website_line_edit.move(280, 100)
+        
+
+        self.unblock_website_button = QPushButton('Unblock Website', self)
+        self.unblock_website_button.setObjectName('unblock_website_button')
+        self.unblock_website_button.setToolTip('Click To Unblock A Website')
+        self.unblock_website_button.clicked.connect(self.block_website)
+        self.unblock_website_button.resize(self.unblock_website_button.sizeHint())
+        self.unblock_website_button.move(450, 100)
+
+
         self.setGeometry(0, 0, WIDTH, HEIGHT)
         self.setWindowTitle('WebLocker')
         self.center()
