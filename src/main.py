@@ -9,8 +9,6 @@ if WINDOWS == platform.system():
         try:
             weblocker = WebLocker()
             weblocker.run()
-            #w = WebLockerHostsManager()
-            #w.delete_from_hosts('www.instagram.com')
         except OSError as e:
             print(e)
 
