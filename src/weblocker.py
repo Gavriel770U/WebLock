@@ -42,15 +42,25 @@ class WebLockerHostsManager(object):
         elif LINUX == platform.system():
             self.block_domain_linux(domain)   
     
+    def unblock_domain(self, domain: str) -> None:
+        if WINDOWS == platform.system():
+            self.unblock_domain_windows(domain)
+
 
     def block_domain_windows(self, domain: str) -> None:
         os.system("ipconfig /flushdns")
         self.write_to_hosts(domain)
         os.system("ipconfig /flushdns")
+        
+        
+    def unblock_domain_windows(self, domain: str) -> None:
+        os.system("ipconfig /flushdns")
+        self.delete_from_hosts(domain)
+        os.system("ipconfig /flushdns")
 
 
     def block_domain_linux(self, domain: str) -> None:
-        self.write_to_hosts(domain)
+        self.write_to_hosts(domain)  
     
 
 class WebLockerWindow(QWidget):
@@ -113,7 +123,7 @@ class WebLockerWindow(QWidget):
         self.unblock_website_button = QPushButton('Unblock Website', self)
         self.unblock_website_button.setObjectName('unblock_website_button')
         self.unblock_website_button.setToolTip('Click To Unblock A Website')
-        self.unblock_website_button.clicked.connect(self.block_website)
+        self.unblock_website_button.clicked.connect(self.unblock_website)
         self.unblock_website_button.resize(self.unblock_website_button.sizeHint())
         self.unblock_website_button.move(450, 100)
 
@@ -126,9 +136,16 @@ class WebLockerWindow(QWidget):
     
     def block_website(self) -> None:
         domain = self.block_website_line_edit.text()
-        print(domain)
+        print("Blocking", domain)
         if domain and len(domain):
             self.__hosts_manager.block_domain(domain)
+            
+            
+    def unblock_website(self) -> None:
+        domain = self.block_website_line_edit.text()
+        print("Unblocking", domain)
+        if domain and len(domain):
+            self.__hosts_manager.unblock_domain(domain)    
             
             
     def center(self) -> None:
