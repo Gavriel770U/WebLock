@@ -13,7 +13,7 @@ QLineEdit {
     border-radius: 8px;
 }
 
-QPushButton {
+QPushButton#block_website_button {
     color: #FFFFFF;
     background: #0577A8;
     border: 1px #DADADA solid;
@@ -24,12 +24,12 @@ QPushButton {
     outline: none; 
 }
 
-QPushButton:hover {
+QPushButton#block_website_button:hover {
     border: 1px #C6C6C6 solid;
     background: #0892D0;
 }
 
-QPushButton:pressed {
+QPushButton#block_website_button:pressed {
     background: darkslategray;
     border-style: inset;
     padding: 1px -1px -1px 1px;
