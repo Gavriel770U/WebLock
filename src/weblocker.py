@@ -13,7 +13,7 @@ class WebLockerHostsManager(object):
         elif LINUX == platform.system():
             self.__hosts_path = r'/etc/hosts'
         else:    
-            raise OSError(f'WebLocker does not support OS [os module: {os.name} | platform module: {platform.system()}]')
+            raise OSError(f'WebLocker does not support OS [{platform.system()}]')
                  
 
     def write_to_hosts(self, domain: str) -> None:
