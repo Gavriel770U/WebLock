@@ -34,6 +34,7 @@ class WebLockerHostsManager(object):
         
         with open(self.__hosts_path, FILE_WRITE) as hosts_file:
             hosts_file.write(updated_data)
+        
                     
     def block_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
@@ -46,6 +47,7 @@ class WebLockerHostsManager(object):
         os.system("ipconfig /flushdns")
         self.write_to_hosts(domain)
         os.system("ipconfig /flushdns")
+
 
     def block_domain_linux(self, domain: str) -> None:
         self.write_to_hosts(domain)

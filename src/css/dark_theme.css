@@ -32,4 +32,5 @@ QPushButton:hover {
 QPushButton:pressed {
     background: darkslategray;
     border-style: inset;
+    padding: 1px -1px -1px 1px;
 }
