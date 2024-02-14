@@ -1,10 +1,28 @@
-NEWLINE: str = '\n'
-SPACE: str = ' '
-NEW_IP: str = '0.0.0.0'
+"""
+    WebLocker Constants divided into separate groups.
+"""
+
+#==== Operation Systems ====
+LINUX: str = "Linux"
+WINDOWS: str = "Windows"
+#===========================
+
+#==== Window Properties ====
+WIDTH: int = 600
+HEIGHT: int = 400
+#===========================
+
+#===== File Management =====
 FILE_APPEND: str = 'a'
 FILE_READ: str = 'r'
 FILE_WRITE: str = 'w'
-LINUX: str = "Linux"
-WINDOWS: str = "Windows"
-WIDTH: int = 600
-HEIGHT: int = 400
+#===========================
+
+#==== Useful Characters ====
+NEWLINE: str = '\n'
+SPACE: str = ' '
+#===========================
+
+#==== Used IP Addresses ====
+NEW_IP: str = '0.0.0.0'
+#===========================
