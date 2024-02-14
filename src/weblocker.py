@@ -12,7 +12,7 @@ class WebLockerHostsManager(object):
             self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
         elif LINUX == platform.system():
             self.__hosts_path = r'/etc/hosts'
-        else:    
+        else:
             raise OSError(f'WebLocker does not support OS [{platform.system()}]')
                  
 
@@ -42,9 +42,12 @@ class WebLockerHostsManager(object):
         elif LINUX == platform.system():
             self.block_domain_linux(domain)   
     
+    
     def unblock_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
             self.unblock_domain_windows(domain)
+        elif LINUX == platform.system():
+            self.unblock_domain_linux(domain)
 
 
     def block_domain_windows(self, domain: str) -> None:
@@ -62,6 +65,10 @@ class WebLockerHostsManager(object):
     def block_domain_linux(self, domain: str) -> None:
         self.write_to_hosts(domain)  
     
+
+    def unblock_domain_linux(self, domain: str) -> None:
+        self.delete_from_hosts(domain)
+
 
 class WebLockerWindow(QWidget):
     def __init__(self) -> None:
