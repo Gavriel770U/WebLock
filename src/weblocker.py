@@ -48,7 +48,7 @@ class WebLockerHostsManager(object):
         os.system("ipconfig /flushdns")
 
     def block_domain_linux(self, domain: str) -> None:
-        self.write_to_hosts(domain)    
+        self.write_to_hosts(domain)
     
 
 class WebLockerWindow(QWidget):
