@@ -5,9 +5,9 @@ from consts import *
 class WebLockerHostsManager(object):
     def __init__(self) -> None:
         if WINDOWS == platform.system():
-            self.__hosts_path = r'C:\Windows\System32\Drivers\etc\hosts'  
+            self.__hosts_path = WINDOWS_HOSTS_PATH
         elif LINUX == platform.system():
-            self.__hosts_path = r'/etc/hosts'
+            self.__hosts_path = LINUX_HOSTS_PATH
         else:
             raise OSError(f'WebLocker does not support OS [{platform.system()}]')
                  
