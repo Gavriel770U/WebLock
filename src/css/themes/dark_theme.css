@@ -9,8 +9,18 @@ QLabel {
 QLineEdit {
     padding: 1px;
     color: #FFFFFF;
+    border: 2px solid #AAAAAA;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+QLineEdit:hover {
     border: 2px solid #FFFFFF;
-    border-radius: 8px;
+}
+
+QLineEdit:focus {
+    border: 2px solid mediumslateblue;
 }
 
 QPushButton#block_website_button {
