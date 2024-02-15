@@ -10,7 +10,7 @@ class WebLockerWindow(QWidget):
         self.__hosts_manager = WebLockerHostsManager()
         
         styling = ''
-        with open(os.path.abspath("./css/themes/dark_theme.css"), FILE_READ) as theme_file:
+        with open(os.path.abspath("./css/themes/light_theme.css"), FILE_READ) as theme_file:
             styling = theme_file.read()
         
         self.setStyleSheet(styling)

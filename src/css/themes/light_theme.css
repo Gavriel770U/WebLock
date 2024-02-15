@@ -10,7 +10,17 @@ QLineEdit {
     padding: 1px;
     color: #000000;
     border: 2px solid #000000;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+QLineEdit:hover {
+    border: 2px solid #444444;
+}
+
+QLineEdit:focus {
+    border: 2px solid mediumslateblue;
 }
 
 QPushButton#block_website_button {
