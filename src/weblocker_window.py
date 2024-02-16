@@ -36,7 +36,7 @@ class WebLockerWindow(QMainWindow):
         self.block_website_line_edit.setObjectName('block_website_line_edit')
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
-        self.block_website_line_edit.setFixedWidth(150)
+        #self.block_website_line_edit.setFixedWidth(150)
         #self.block_website_line_edit.move(280, 50)
         
 
@@ -45,6 +45,7 @@ class WebLockerWindow(QMainWindow):
         self.block_website_button.setToolTip('Click To Block A Website')
         self.block_website_button.clicked.connect(self.block_website)
         self.block_website_button.resize(self.block_website_button.sizeHint())
+        self.block_website_button.setFixedWidth(120)
         #self.block_website_button.move(450, 50)
 
 
@@ -59,7 +60,7 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_line_edit.setObjectName('unblock_website_line_edit')
         self.unblock_website_line_edit.setToolTip('Enter Website Domain To Unblock')
         self.unblock_website_line_edit.resize(self.unblock_website_line_edit.sizeHint())
-        self.unblock_website_line_edit.setFixedWidth(150)
+        #self.unblock_website_line_edit.setFixedWidth(150)
         #self.unblock_website_line_edit.move(280, 100)
         
 
@@ -68,6 +69,8 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_button.setToolTip('Click To Unblock A Website')
         self.unblock_website_button.clicked.connect(self.unblock_website)
         self.unblock_website_button.resize(self.unblock_website_button.sizeHint())
+        self.unblock_website_button.setFixedWidth(120)
+
         #self.unblock_website_button.move(450, 100)
 
         self.container = QFrame()
