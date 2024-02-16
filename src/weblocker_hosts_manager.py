@@ -25,42 +25,37 @@ class WebLockerHostsManager(object):
             data_lines = hosts_file.readlines()
         
         for line in data_lines:
-            if not (NEW_IP + SPACE + domain + NEWLINE == line):
+            if not (NEW_IP + SPACE + domain == line or NEW_IP + SPACE + domain + NEWLINE == line):
                 updated_data += line
         
         with open(self.__hosts_path, FILE_WRITE) as hosts_file:
             hosts_file.write(updated_data)
-        
+    
+    def windows_wrapper(self, func) -> None:
+        def wrap(*args, **kwargs) -> None:
+            os.system("ipconfig /flushdns")
+            func(*args, **kwargs)
+            os.system("ipconfig /flushdns")
+        return wrap
+    
+    def linux_wrapper(self, func) -> None:
+        def wrap(*args, **kwargs) -> None:
+            func(*args, **kwargs)
+        return wrap    
+             
                     
     def block_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
-            self.block_domain_windows(domain)
+            self.write_to_hosts = self.windows_wrapper(self.write_to_hosts)
+            self.write_to_hosts(domain)
         elif LINUX == platform.system():
-            self.block_domain_linux(domain)   
-    
+            self.write_to_hosts = self.linux_wrapper(self.write_to_hosts)
+            self.write_to_hosts(domain)
     
     def unblock_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
-            self.unblock_domain_windows(domain)
+            self.delete_from_hosts = self.windows_wrapper(self.delete_from_hosts)
+            self.delete_from_hosts(domain)
         elif LINUX == platform.system():
-            self.unblock_domain_linux(domain)
-
-
-    def block_domain_windows(self, domain: str) -> None:
-        os.system("ipconfig /flushdns")
-        self.write_to_hosts(domain)
-        os.system("ipconfig /flushdns")
-
-
-    def unblock_domain_windows(self, domain: str) -> None:
-        os.system("ipconfig /flushdns")
-        self.delete_from_hosts(domain)
-        os.system("ipconfig /flushdns")
-
-
-    def block_domain_linux(self, domain: str) -> None:
-        self.write_to_hosts(domain)
-
-
-    def unblock_domain_linux(self, domain: str) -> None:
-        self.delete_from_hosts(domain)
+            self.delete_from_hosts = self.linux_wrapper(self.delete_from_hosts)
+            self.delete_from_hosts(domain)
