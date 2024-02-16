@@ -7,6 +7,9 @@ LINUX: str = "Linux"
 WINDOWS: str = "Windows"
 #===========================
 
+#==== Hosts File Paths =====
+WINDOWS_HOSTS_PATH: str  = r'C:\Windows\System32\Drivers\etc\hosts'
+LINUX_HOSTS_PATH: str = r'/etc/hosts'
 #==== Window Properties ====
 WIDTH: int = 600
 HEIGHT: int = 400
