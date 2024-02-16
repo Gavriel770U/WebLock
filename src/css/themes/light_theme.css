@@ -1,3 +1,7 @@
+#container {
+    background-color: #FFFFFF;
+}
+
 QWidget {
     background: #FFFFFF;
 }

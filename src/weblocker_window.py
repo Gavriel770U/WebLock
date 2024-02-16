@@ -12,7 +12,7 @@ class WebLockerWindow(QMainWindow):
         self.__hosts_manager = WebLockerHostsManager()
         
         styling = ''
-        with open(os.path.abspath("./css/themes/light_theme.css"), FILE_READ) as theme_file:
+        with open(os.path.abspath("./css/themes/dark_theme.css"), FILE_READ) as theme_file:
             styling = theme_file.read()
         
         self.setStyleSheet(styling)
@@ -72,7 +72,6 @@ class WebLockerWindow(QMainWindow):
 
         self.container = QFrame()
         self.container.setObjectName('container')
-        self.container.setStyleSheet('#container { background-color: #222 }')
         
         self.main_layout = QVBoxLayout()
         
