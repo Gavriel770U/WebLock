@@ -14,7 +14,7 @@ LINUX_HOSTS_PATH: str = r'/etc/hosts'
 
 #==== Cache Clear Support ==
 RESOLVECTL_DISTROS: tuple = (
-    'Mint Linux',
+    'Linux Mint',
 )
 #===========================
 
