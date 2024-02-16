@@ -119,7 +119,7 @@ class WebLockerWindow(QMainWindow):
             
             
     def unblock_website(self) -> None:
-        domain = self.block_website_line_edit.text()
+        domain = self.unblock_website_line_edit.text()
         print("Unblocking", domain)
         if domain and len(domain):
             self.__hosts_manager.unblock_domain(domain)    
