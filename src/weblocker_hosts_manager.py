@@ -40,7 +40,18 @@ class WebLockerHostsManager(object):
     
     def linux_wrapper(self, func) -> None:
         def wrap(*args, **kwargs) -> None:
+            dns_cache_clear_cmd = ''
+            try:
+                distribution = platform.freedesktop_os_release()['NAME']
+                
+                if distribution in RESOLVECTL_DISTROS:
+                    dns_cache_clear_cmd = 'resolvectl flush-caches'
+            except BaseException as e:
+                print('Error while checking Linux distribution')            
+            
+            os.system(dns_cache_clear_cmd)    
             func(*args, **kwargs)
+            os.system(dns_cache_clear_cmd)
         return wrap    
              
                     
