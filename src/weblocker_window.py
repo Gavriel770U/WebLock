@@ -1,10 +1,12 @@
 from PyQt6.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QLineEdit, QLabel)
+    QPushButton, QLineEdit, QLabel, QFrame, QMainWindow, QVBoxLayout, QHBoxLayout)
 from PyQt6.QtGui import QFont
+from PyQt6.QtCore import Qt
 from weblocker_hosts_manager import *
+from GToggle import GToggle
 from consts import *
 
-class WebLockerWindow(QWidget):
+class WebLockerWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.__hosts_manager = WebLockerHostsManager()
@@ -27,7 +29,7 @@ class WebLockerWindow(QWidget):
         self.block_website_label.setObjectName('block_website_label')
         self.block_website_label.setText("<b>Enter Domain Of Website To Block: </b>")
         self.block_website_label.resize(self.block_website_label.sizeHint())
-        self.block_website_label.move(40, 50)
+        #self.block_website_label.move(40, 50)
 
 
         self.block_website_line_edit = QLineEdit(self)
@@ -35,7 +37,7 @@ class WebLockerWindow(QWidget):
         self.block_website_line_edit.setToolTip('Enter Website Domain To Block')
         self.block_website_line_edit.resize(self.block_website_line_edit.sizeHint())
         self.block_website_line_edit.setFixedWidth(150)
-        self.block_website_line_edit.move(280, 50)
+        #self.block_website_line_edit.move(280, 50)
         
 
         self.block_website_button = QPushButton('Block Website', self)
@@ -43,14 +45,14 @@ class WebLockerWindow(QWidget):
         self.block_website_button.setToolTip('Click To Block A Website')
         self.block_website_button.clicked.connect(self.block_website)
         self.block_website_button.resize(self.block_website_button.sizeHint())
-        self.block_website_button.move(450, 50)
+        #self.block_website_button.move(450, 50)
 
 
         self.unblock_website_label = QLabel(self)
         self.unblock_website_label.setObjectName('unblock_website_label')
         self.unblock_website_label.setText("<b>Enter Domain Of Website To Unblock: </b>")
         self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
-        self.unblock_website_label.move(40, 100)
+        #self.unblock_website_label.move(40, 100)
 
 
         self.unblock_website_line_edit = QLineEdit(self)
@@ -58,7 +60,7 @@ class WebLockerWindow(QWidget):
         self.unblock_website_line_edit.setToolTip('Enter Website Domain To Unblock')
         self.unblock_website_line_edit.resize(self.unblock_website_line_edit.sizeHint())
         self.unblock_website_line_edit.setFixedWidth(150)
-        self.unblock_website_line_edit.move(280, 100)
+        #self.unblock_website_line_edit.move(280, 100)
         
 
         self.unblock_website_button = QPushButton('Unblock Website', self)
@@ -66,9 +68,33 @@ class WebLockerWindow(QWidget):
         self.unblock_website_button.setToolTip('Click To Unblock A Website')
         self.unblock_website_button.clicked.connect(self.unblock_website)
         self.unblock_website_button.resize(self.unblock_website_button.sizeHint())
-        self.unblock_website_button.move(450, 100)
+        #self.unblock_website_button.move(450, 100)
 
-
+        self.container = QFrame()
+        self.container.setObjectName('container')
+        self.container.setStyleSheet('#container { background-color: #222 }')
+        
+        self.main_layout = QVBoxLayout()
+        
+        self.block_row_layout = QHBoxLayout()
+        self.block_row_layout.addWidget(self.block_website_label)
+        self.block_row_layout.addWidget(self.block_website_line_edit)
+        self.block_row_layout.addWidget(self.block_website_button)
+        self.main_layout.addLayout(self.block_row_layout)
+        
+        self.unblock_row_layout = QHBoxLayout()
+        self.unblock_row_layout.addWidget(self.unblock_website_label)
+        self.unblock_row_layout.addWidget(self.unblock_website_line_edit)
+        self.unblock_row_layout.addWidget(self.unblock_website_button)
+        self.main_layout.addLayout(self.unblock_row_layout)
+        
+        self.theme_toggle = GToggle(60, 28, "#777", "#DDD", "#00BCFF")
+        #self.theme_toggle.move(300, 300)
+        
+        self.main_layout.addWidget(self.theme_toggle)
+        
+        self.container.setLayout(self.main_layout)
+        self.setCentralWidget(self.container)
         self.setGeometry(0, 0, WIDTH, HEIGHT)
         self.setWindowTitle('WebLocker')
         self.center()
