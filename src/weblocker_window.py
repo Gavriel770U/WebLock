@@ -74,13 +74,13 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_button.setFixedWidth(120)
         
         
-        self.theme_toggle = GToggle(60, 28, "#777", "#DDD", "#00BCFF")
+        self.theme_toggle = GToggle(self)
         self.theme_toggle.toggled.connect(self.change_theme)
                 
         
         self.theme_label = QLabel(self)
         self.theme_label.setObjectName("theme_label")
-        self.theme_label.setText("<b>Light Mode: </b>")
+        self.theme_label.setText("<b>Dark Mode: </b>")
         self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
         
         
