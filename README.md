@@ -1,5 +1,7 @@
 # WebLock
-WebLock is a website blocker
+WebLock is a website blocker.
+
+### More Information about WebLock: https://github.com/Gavriel770U/WebLock/wiki 
 
 ________________________________________________________________
 
