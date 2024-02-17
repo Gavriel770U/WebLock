@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import (QWidget, QToolTip,
     QPushButton, QLineEdit, QLabel, QFrame, QMainWindow, QVBoxLayout, QHBoxLayout)
 from PyQt6.QtGui import QFont
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QEasingCurve
 from weblocker_hosts_manager import *
 from GToggle import GToggle
 from consts import *
@@ -74,7 +74,7 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_button.setFixedWidth(120)
         
         
-        self.theme_toggle = GToggle(self)
+        self.theme_toggle = GToggle(self, QEasingCurve.Type.InOutQuint)
         self.theme_toggle.toggled.connect(self.change_theme)
                 
         
