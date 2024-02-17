@@ -80,7 +80,7 @@ class WebLockerWindow(QMainWindow):
         
         self.theme_label = QLabel(self)
         self.theme_label.setObjectName("theme_label")
-        self.theme_label.setText("<b>Light Mode: </b>")
+        self.theme_label.setText("<b>Dark Mode: </b>")
         self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
         
         
