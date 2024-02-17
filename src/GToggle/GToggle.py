@@ -21,7 +21,7 @@ class GToggle(QCheckBox):
         QColor, lambda self: self._text_color,
         lambda self, col: setattr(self, '_text_color', col))
 
-    def __init__(self, parent=None) -> None:
+    def __init__(self, parent=None, animation_curve: QEasingCurve.Type = QEasingCurve.Type.InOutCubic) -> None:
         super().__init__(parent)
         self._bg_color, self._circle_color, self._active_color, \
             self._disabled_color, self._text_color = QColor("#0BF"), \
@@ -31,6 +31,7 @@ class GToggle(QCheckBox):
         self._animation_duration = 500  # milliseconds
         self.stateChanged.connect(self.start_transition)
         self._user_checked = False  # Introduced flag to check user-initiated changes
+        self._animation_curve = animation_curve
 
     circle_pos = pyqtProperty(
         float, lambda self: self._circle_pos,
@@ -39,7 +40,7 @@ class GToggle(QCheckBox):
         QColor, lambda self: self._intermediate_bg_color,
         lambda self, col: setattr(self, '_intermediate_bg_color', col))
 
-    def setDuration(self, duration: int):
+    def setDuration(self, duration: int) -> None:
         """
         Set the duration for the animation.
         :param duration: Duration in milliseconds.
@@ -76,7 +77,7 @@ class GToggle(QCheckBox):
 
     def _create_common_animation(self, state, prop, start_val, end_val):
         animation = QPropertyAnimation(self, prop, self)
-        animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        animation.setEasingCurve(self._animation_curve)
         animation.setDuration(self._animation_duration)
         animation.setStartValue(start_val if state else end_val)
         animation.setEndValue(end_val if state else start_val)
