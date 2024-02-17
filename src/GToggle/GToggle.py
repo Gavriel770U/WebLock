@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QCheckBox
 from PyQt6.QtGui import QPainter, QColor, QBrush, QPen
-from PyQt6.QtCore import Qt, QRect, QPoint
+from PyQt6.QtCore import Qt, QRect, QPoint, QEasingCurve
 
 class GToggle(QCheckBox):
     def __init__(self, 
@@ -9,6 +9,7 @@ class GToggle(QCheckBox):
                  background_color: str,
                  circle_color: str,
                  active_color: str,
+                 animation_curve = QEasingCurve
 
     ) -> None:
         QCheckBox.__init__(self)
