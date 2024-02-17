@@ -74,7 +74,7 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_button.setFixedWidth(120)
         
         
-        self.theme_toggle = GToggle(60, 28, "#777", "#DDD", "#00BCFF")
+        self.theme_toggle = GToggle(self)
         self.theme_toggle.toggled.connect(self.change_theme)
                 
         
