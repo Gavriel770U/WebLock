@@ -87,6 +87,7 @@ class WebLockerWindow(QMainWindow):
         self.block_windows_spyware_button = QPushButton('Block Windows Spyware', self)
         self.block_windows_spyware_button.setObjectName("block_windows_spyware_button")
         self.block_windows_spyware_button.setToolTip('Click To Block Windows Spyware')
+        self.block_windows_spyware_button.clicked.connect(self.block_windows_spyware)
         self.block_windows_spyware_button.resize(self.block_windows_spyware_button.sizeHint())
         
         
@@ -132,7 +133,11 @@ class WebLockerWindow(QMainWindow):
         domain = self.unblock_website_line_edit.text()
         print("Unblocking", domain)
         if domain and len(domain):
-            self.__hosts_manager.unblock_domain(domain)    
+            self.__hosts_manager.unblock_domain(domain)
+    
+    
+    def block_windows_spyware(self) -> None:
+        print("Blocking Windows Spyware...")       
     
     
     def change_theme(self) -> None:
