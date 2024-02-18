@@ -5,6 +5,7 @@ from PyQt6.QtCore import Qt, QEasingCurve
 from weblocker_hosts_manager import *
 from GToggle import GToggle
 from consts import *
+import json
 
 class WebLockerWindow(QMainWindow):
     def __init__(self) -> None:
@@ -137,7 +138,16 @@ class WebLockerWindow(QMainWindow):
     
     
     def block_windows_spyware(self) -> None:
-        print("Blocking Windows Spyware...")       
+        print("Blocking Windows Spyware...")
+        windows_spyware_domains_categories = {}
+        
+        with open('./block_lists/windows_spyware.json', FILE_READ) as windows_spyware_domains_file:
+            windows_spyware_domains_categories = json.loads(windows_spyware_domains_file.read())
+            
+        for category in windows_spyware_domains_categories.keys():
+            for domain in windows_spyware_domains_categories[category]:
+                if domain and len(domain):
+                    self.__hosts_manager.block_domain(domain)
     
     
     def change_theme(self) -> None:

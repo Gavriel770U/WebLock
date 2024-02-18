@@ -31,12 +31,14 @@ class WebLockerHostsManager(object):
         with open(self.__hosts_path, FILE_WRITE) as hosts_file:
             hosts_file.write(updated_data)
     
+    
     def windows_wrapper(self, func) -> None:
         def wrap(*args, **kwargs) -> None:
             os.system("ipconfig /flushdns")
             func(*args, **kwargs)
             os.system("ipconfig /flushdns")
         return wrap
+    
     
     def linux_wrapper(self, func) -> None:
         def wrap(*args, **kwargs) -> None:
@@ -62,6 +64,7 @@ class WebLockerHostsManager(object):
         elif LINUX == platform.system():
             self.write_to_hosts = self.linux_wrapper(self.write_to_hosts)
             self.write_to_hosts(domain)
+    
     
     def unblock_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
