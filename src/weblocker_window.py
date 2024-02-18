@@ -84,6 +84,12 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
         
         
+        self.block_windows_spyware_button = QPushButton('Block Windows Spyware', self)
+        self.block_windows_spyware_button.setObjectName("block_windows_spyware_button")
+        self.block_windows_spyware_button.setToolTip('Click To Block Windows Spyware')
+        self.block_windows_spyware_button.resize(self.block_windows_spyware_button.sizeHint())
+        
+        
         self.block_row_layout = QHBoxLayout()
         self.block_row_layout.addWidget(self.block_website_label)
         self.block_row_layout.addWidget(self.block_website_line_edit)
@@ -101,6 +107,10 @@ class WebLockerWindow(QMainWindow):
         self.theme_row_layout.addWidget(self.theme_toggle, 0)
         self.theme_row_layout.insertStretch(-1, 1)
         self.main_layout.addLayout(self.theme_row_layout)
+        
+        self.advanced_blocks_layout = QHBoxLayout()
+        self.advanced_blocks_layout.addWidget(self.block_windows_spyware_button)
+        self.theme_row_layout.addLayout(self.advanced_blocks_layout)
 
         
         self.container.setLayout(self.main_layout)
