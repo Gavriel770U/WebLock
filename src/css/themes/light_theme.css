@@ -71,7 +71,7 @@ QPushButton#unblock_website_button:pressed {
     padding: 1px -1px -1px 1px;
 }
 
-QPushButton#block_windows_spyware_button {
+QPushButton#block_msedge_spyware_button {
     color: #FFFFFF;
     background: darkred;
     border: 1px #DADADA solid;
@@ -82,12 +82,12 @@ QPushButton#block_windows_spyware_button {
     outline: none; 
 }
 
-QPushButton#block_windows_spyware_button:hover {
+QPushButton#block_msedge_spyware_button:hover {
     border: 1px #C6C6C6 solid;
     background: red;
 }
 
-QPushButton#block_windows_spyware_button:pressed {
+QPushButton#block_msedge_spyware_button:pressed {
     background: lightcoral;
     border-style: inset;
     padding: 1px -1px -1px 1px;

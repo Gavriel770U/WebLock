@@ -5,7 +5,6 @@ from PyQt6.QtCore import Qt, QEasingCurve
 from weblocker_hosts_manager import *
 from GToggle import GToggle
 from consts import *
-import json
 
 class WebLockerWindow(QMainWindow):
     def __init__(self) -> None:
@@ -85,11 +84,11 @@ class WebLockerWindow(QMainWindow):
         self.unblock_website_label.resize(self.unblock_website_label.sizeHint())
         
         
-        self.block_windows_spyware_button = QPushButton('Block Windows Spyware', self)
-        self.block_windows_spyware_button.setObjectName("block_windows_spyware_button")
-        self.block_windows_spyware_button.setToolTip('Click To Block Windows Spyware')
-        self.block_windows_spyware_button.clicked.connect(self.block_windows_spyware)
-        self.block_windows_spyware_button.resize(self.block_windows_spyware_button.sizeHint())
+        self.block_msedge_spyware_button = QPushButton('Block MSEdge Spyware', self)
+        self.block_msedge_spyware_button.setObjectName("block_msedge_spyware_button")
+        self.block_msedge_spyware_button.setToolTip('Click To Block MSEdge Spyware')
+        self.block_msedge_spyware_button.clicked.connect(self.block_msedge_spyware)
+        self.block_msedge_spyware_button.resize(self.block_msedge_spyware_button.sizeHint())
         
         
         self.block_row_layout = QHBoxLayout()
@@ -111,7 +110,7 @@ class WebLockerWindow(QMainWindow):
         self.main_layout.addLayout(self.theme_row_layout)
         
         self.advanced_blocks_layout = QHBoxLayout()
-        self.advanced_blocks_layout.addWidget(self.block_windows_spyware_button)
+        self.advanced_blocks_layout.addWidget(self.block_msedge_spyware_button)
         self.theme_row_layout.addLayout(self.advanced_blocks_layout)
 
         
@@ -137,17 +136,14 @@ class WebLockerWindow(QMainWindow):
             self.__hosts_manager.unblock_domain(domain)
     
     
-    def block_windows_spyware(self) -> None:
-        print("Blocking Windows Spyware...")
-        windows_spyware_domains_categories = {}
+    def block_msedge_spyware(self) -> None:
+        print("Blocking MSEdge Spyware And Ads...")
+        domains_to_block = ''
         
-        with open('./block_lists/windows_spyware.json', FILE_READ) as windows_spyware_domains_file:
-            windows_spyware_domains_categories = json.loads(windows_spyware_domains_file.read())
+        with open('./block_lists/msedge_blocklist.txt', FILE_READ) as msedge_block_list_file:
+            domains_to_block = msedge_block_list_file.read()
             
-        for category in windows_spyware_domains_categories.keys():
-            for domain in windows_spyware_domains_categories[category]:
-                if domain and len(domain):
-                    self.__hosts_manager.block_domain(domain)
+        self.__hosts_manager.block_domains_list(domains_to_block)
     
     
     def change_theme(self) -> None:
