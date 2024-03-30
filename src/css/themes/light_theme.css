@@ -70,3 +70,25 @@ QPushButton#unblock_website_button:pressed {
     border-style: inset;
     padding: 1px -1px -1px 1px;
 }
+
+QPushButton#block_msedge_spyware_button {
+    color: #FFFFFF;
+    background: darkred;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none; 
+}
+
+QPushButton#block_msedge_spyware_button:hover {
+    border: 1px #C6C6C6 solid;
+    background: red;
+}
+
+QPushButton#block_msedge_spyware_button:pressed {
+    background: lightcoral;
+    border-style: inset;
+    padding: 1px -1px -1px 1px;
+}
