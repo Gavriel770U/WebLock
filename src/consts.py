@@ -15,7 +15,7 @@ LINUX_HOSTS_PATH: str = r'/etc/hosts'
 #==== Cache Clear Support ==
 RESOLVECTL_DISTROS: tuple = (
     'Linux Mint',
-    'Freedesktop SDK',
+    'Freedesktop SDK', # Fedora
 )
 #===========================
 
