@@ -16,7 +16,7 @@ class WebLockerWindow(QMainWindow):
         # Example usage
         self.__css_dark_theme_path = self.resource_path(os.path.join('css', 'themes', 'dark_theme.css'))
         self.__css_light_theme_path = self.resource_path(os.path.join('css', 'themes', 'light_theme.css'))
-        self.__blocklist_path = self.resource_path(os.path.join('block_lists', 'msedge_blocklist.txt'))
+        self.__msedge_blocklist_path = self.resource_path(os.path.join('block_lists', 'msedge_blocklist.txt'))
         
         self.dark_styling = ''
         with open(self.__css_dark_theme_path, FILE_READ) as theme_file:
@@ -29,7 +29,7 @@ class WebLockerWindow(QMainWindow):
         self.setStyleSheet(self.dark_styling)
         
         self.__initUI()
-    
+ 
        
     def resource_path(self, relative_path):
         """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -158,7 +158,7 @@ class WebLockerWindow(QMainWindow):
         print("Blocking MSEdge Spyware And Ads...")
         domains_to_block = ''
         
-        with open(self.__blocklist_path, FILE_READ) as msedge_block_list_file:
+        with open(self.__msedge_blocklist_path, FILE_READ) as msedge_block_list_file:
             domains_to_block = msedge_block_list_file.read()
             
         self.__hosts_manager.block_domains_list(domains_to_block)
