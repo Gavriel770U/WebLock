@@ -15,4 +15,4 @@ class WebLocker(object):
     
     def run(self) -> None:
         self.__window.show()
-        sys(exit(self.__app.exec()))
+        sys.exit(self.__app.exec())
