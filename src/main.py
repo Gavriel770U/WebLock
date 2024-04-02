@@ -1,7 +1,7 @@
 from weblocker import *
 import platform
 
-if platform.system() == 'Windows':
+if WINDOWS == platform.system():
     from pyuac import main_requires_admin
 
     @main_requires_admin
@@ -12,7 +12,7 @@ if platform.system() == 'Windows':
         except OSError as e:
             print(e)
 
-if platform.system() == 'Linux':
+if LINUX == platform.system():
     def linux_main() -> None:
         try:
             weblocker = WebLocker()
@@ -21,8 +21,10 @@ if platform.system() == 'Linux':
             print(e)
 
 def main() -> None:
-    linux_main()
-    print(platform.system())
-
+    if LINUX == platform.system():
+        linux_main()
+    elif WINDOWS == platform.system():
+        windows_main()
+        
 if __name__ == '__main__':
     main()

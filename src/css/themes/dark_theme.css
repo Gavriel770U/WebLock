@@ -1,0 +1,94 @@
+#container {
+    background-color: #262D37;
+}
+
+QWidget {
+    background: #262D37;
+}
+
+QLabel {
+    color: #FFFFFF;
+}
+
+QLineEdit {
+    padding: 1px;
+    color: #FFFFFF;
+    border: 2px solid #AAAAAA;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+QLineEdit:hover {
+    border: 2px solid #FFFFFF;
+}
+
+QLineEdit:focus {
+    border: 2px solid mediumslateblue;
+}
+
+QPushButton#block_website_button {
+    color: #FFFFFF;
+    background: #0577A8;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none; 
+}
+
+QPushButton#block_website_button:hover {
+    border: 1px #C6C6C6 solid;
+    background: #0892D0;
+}
+
+QPushButton#block_website_button:pressed {
+    background: darkslategray;
+    border-style: inset;
+    padding: 1px -1px -1px 1px;
+}
+
+QPushButton#unblock_website_button {
+    color: #FFFFFF;
+    background: darkred;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none; 
+}
+
+QPushButton#unblock_website_button:hover {
+    border: 1px #C6C6C6 solid;
+    background: red;
+}
+
+QPushButton#unblock_website_button:pressed {
+    background: lightcoral;
+    border-style: inset;
+    padding: 1px -1px -1px 1px;
+}
+
+QPushButton#block_msedge_spyware_button {
+    color: #FFFFFF;
+    background: darkred;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none; 
+}
+
+QPushButton#block_msedge_spyware_button:hover {
+    border: 1px #C6C6C6 solid;
+    background: red;
+}
+
+QPushButton#block_msedge_spyware_button:pressed {
+    background: lightcoral;
+    border-style: inset;
+    padding: 1px -1px -1px 1px;
+}
