@@ -17,6 +17,11 @@ class WebLockerHostsManager(object):
             hosts_file.write(NEWLINE + NEW_IP + SPACE + domain)
 
 
+    def write_block_list_to_hosts(self, domains: str) -> None:
+        with open(self.__hosts_path, FILE_APPEND) as hosts_file:
+            hosts_file.write(domains)
+            
+
     def delete_from_hosts(self, domain: str) -> None:
         updated_data = ''
         data_lines = []
@@ -31,12 +36,14 @@ class WebLockerHostsManager(object):
         with open(self.__hosts_path, FILE_WRITE) as hosts_file:
             hosts_file.write(updated_data)
     
+    
     def windows_wrapper(self, func) -> None:
         def wrap(*args, **kwargs) -> None:
             os.system("ipconfig /flushdns")
             func(*args, **kwargs)
             os.system("ipconfig /flushdns")
         return wrap
+    
     
     def linux_wrapper(self, func) -> None:
         def wrap(*args, **kwargs) -> None:
@@ -63,6 +70,7 @@ class WebLockerHostsManager(object):
             self.write_to_hosts = self.linux_wrapper(self.write_to_hosts)
             self.write_to_hosts(domain)
     
+    
     def unblock_domain(self, domain: str) -> None:
         if WINDOWS == platform.system():
             self.delete_from_hosts = self.windows_wrapper(self.delete_from_hosts)
@@ -70,3 +78,12 @@ class WebLockerHostsManager(object):
         elif LINUX == platform.system():
             self.delete_from_hosts = self.linux_wrapper(self.delete_from_hosts)
             self.delete_from_hosts(domain)
+            
+    
+    def block_domains_list(self, domains: str) -> None:
+        if WINDOWS == platform.system():
+            self.write_block_list_to_hosts = self.windows_wrapper(self.write_block_list_to_hosts)
+            self.write_block_list_to_hosts(domains)
+        elif LINUX == platform.system():
+            self.write_block_list_to_hosts = self.linux_wrapper(self.write_block_list_to_hosts)
+            self.write_block_list_to_hosts(domains)
