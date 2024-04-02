@@ -1,9 +1,12 @@
 # WebLock
-WebLock is a website blocker.
+WebLock is a website blocker [WebLocker].
 
 ### More Information about WebLock: https://github.com/Gavriel770U/WebLock/wiki 
 
 ________________________________________________________________
+
+# Note Before Using
+WebLocker requires administrator / sudo (super user) rights for running.
 
 # How To Run?
 ## Windows
