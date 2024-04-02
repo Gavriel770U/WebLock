@@ -21,3 +21,10 @@ Now you will be able to run the `linux_run.sh` as executable:
 ```bash
 ./linux_run.sh
 ```
+
+
+# Previews
+## Windows
+![WebLocker Windows]()
+
+## Linux Mint
