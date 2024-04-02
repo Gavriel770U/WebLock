@@ -25,6 +25,6 @@ Now you will be able to run the `linux_run.sh` as executable:
 
 # Previews
 ## Windows
-![WebLocker Windows]()
+![WebLocker Windows](./assets/windows_weblocker.png)
 
 ## Linux Mint
